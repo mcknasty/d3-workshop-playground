@@ -1,4 +1,4 @@
-This is a class I took on D3.js.  It was a great refesher and I learned some new topics.
+This is a class I took on D3.js.  It was a great refesher and I learned some new topics.  The instructor actually provided some of the framework, but as excercise we were to build out charts.  There are two more I need to complete for homework.
 
 # D3 Workshop - Analytics Dashboard
 
