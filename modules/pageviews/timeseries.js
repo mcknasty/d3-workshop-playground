@@ -20,5 +20,77 @@
 
   function visualize(data) {
     // code here
+		
+		// scales
+		var x = d3.time.scale()
+			.domain(d3.extent(data, function(d){
+				return d.date;
+			}))
+			.range([0, width]);
+		
+		var y = d3.scale.linear().domain(d3.extent(data, function(d){
+			return d.value;
+		})).range([height, 0]);
+		
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.ticks(d3.time.day, 3)
+			.tickFormat(d3.time.format('%m/%d'));
+		
+		var yAxis = d3.svg.axis()
+			.orient('left')
+			.innerTickSize(-width)
+			.scale(y);
+		
+		svg.append('g')
+			.attr('class', 'axis')
+			.attr('transform', 'translate(' + [0, height] + ')')
+			.call(xAxis);
+			
+		svg.append('g')
+			.attr('class', 'axis')
+			.call(yAxis);
+		
+		var line = d3.svg.line()
+			.x(function(d){ 
+				return x(d.date)
+			})
+			.y(function(d){
+				return y(d.value)
+			})
+			.interpolate('monotone');
+			
+		var path = svg.append('path')
+			.datum(data)
+			.attr('d', line)
+			.attr('class', 'line');
+		
+		var totalLength = path.node().getTotalLength();
+		
+		path
+			.attr('stroke-dasharray', totalLength + " " + totalLength)
+			.attr('stroke-dashoffset', totalLength)
+			.transition()
+			.duration(2000)
+			.attr('stroke-dashoffset', 0);
+			
+			// let's overlay some data points
+			
+			svg.selectAll('cicle')
+				.data(data)
+				.enter()
+				.append('circle')
+				.attr('cx', function(d,i){
+					return x(d.date)
+				})
+				.attr('cy', function(d,i) {
+					return y(d.value)
+				})
+				.attr('r', 3)
+				.attr('fill', 'white')
+				.style('opacity', 0)
+				.transition()
+				.delay(2000)
+				.style('opacity', 1)
   }
 }());
