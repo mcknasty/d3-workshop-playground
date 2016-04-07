@@ -49,3 +49,16 @@
   font-size: 12px;
   shape-rendering: crispEdges;
 }
+
+.slider .slider-selection {
+	background: #BABABA;
+}
+
+.slider.slider-horizontal .slider-track{
+	margin: 150px 0px;
+}
+
+.slider.slider-horizontal .tooltip {
+	margin-top: 120px;
+	left: 0%;
+}

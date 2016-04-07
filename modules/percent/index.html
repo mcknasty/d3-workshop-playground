@@ -13,8 +13,6 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
-	
-	<link href="/css/bootstrap-slider.css" rel="stylesheet">
 
   <!-- Custom CSS -->
   <link href="/css/sb-admin.css" rel="stylesheet">
@@ -54,7 +52,7 @@
       <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-          <li class="active">
+          <li>
             <a href="/"><i class="ion-ios-speedometer-outline"></i> Dashboard</a>
           </li>
           <li>
@@ -92,7 +90,7 @@
           <li>
             <a href="/modules/breakdown"><i class="ion-ios-pie"></i> Breakdown</a>
           </li>
-          <li>
+          <li class="active">
             <a href="/modules/geomapping"><i class="ion-map"></i> Location Stats</a>
           </li>
         </ul>
@@ -105,103 +103,13 @@
       <div class="container-fluid">
 
         <div class="row">
-          <div class="col-lg-6">
-          <div class="widget-chart">
-            <div class="widget-chart-content">
-            <h4 class="chart-title">
-              Visitor Analytics
-              <small>Pageviews</small>
-            </h4>
-            <div class="vis timeseries">
-            </div>
-            </div>
-          </div>
-          </div>
-
-          <div class="col-lg-6">
-          <div class="widget-chart darker">
-            <div class="widget-chart-content">
-            <h4 class="chart-title">
-              Browser Statistics
-              <small>breakdown</small>
-            </h4>
-            <div class="vis pie">
-            </div>
-            </div>
-          </div>
-          </div>
-
-          <!-- <div class="col-lg-6">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Browser Breakdown</h3>
-              </div>
-              <div class="panel-body pie">
-              </div>
-            </div>
-          </div> -->
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="widget-chart with-sidebar bg-black">
-              <div class="widget-chart-content">
-                <h4 class="chart-title">
-                  Geographic Data
-                  <small>yesterday's visits</small>
-                </h4>
-                <div class="vis geomap">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-          <div class="widget-chart with-sidebar bg-black">
-            <div class="widget-chart-content">
-            <h4 class="chart-title">
-              Visitor Analytics
-              <small>punchcard</small>
-            </h4>
-            <div class="vis punchcard">
-            </div>
-            </div>
-          </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-          <div class="widget-chart with-sidebar bg-black">
-            <div class="widget-chart-content">
-            <h4 class="chart-title">
-              Product Sales
-              <small>last month's sales</small>
-            </h4>
-            <div class="vis products">
-            </div>
-            </div>
-          </div>
-          </div>
-        </div>
-
-        <div class="row">
           <div class="col-md-12">
             <div class="widget-chart with-sidebar bg-black">
               <div class="widget-chart-content">
                 <h4 class="chart-title">
                   Percent Complete
                 </h4>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="vis spinner">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<input id="percent" type="text"/>
-										</div>
+								<div class="vis spinner">
 								</div>
               </div>
             </div>
@@ -224,19 +132,10 @@
 
   <!-- Bootstrap Core JavaScript -->
   <script src="/js/bootstrap.collapse.min.js"></script>
-	
-	<!-- Bootstrap Core JavaScript -->
-	<script src="/js/bootstrap-slider.js"></script>
 
   <!-- vis -->
   <script src="/js/d3.tip.js"></script>
-  <script src="/modules/pageviews/timeseries.js"></script>
-  <script src="/modules/breakdown/pie.js"></script>
-  <script src="/modules/punchcard/punchcard.complete.js"></script>
-  <script src="/modules/geomapping/geomap.js"></script>
-  <script src="/modules/product/products.complete.js"></script>
-	<script src="/modules/percent/percent.js"></script>
-	<script src="/modules/percent/percent_slider.js"></script>
+  <script src="precent.js"></script>
 
 </body>
 
