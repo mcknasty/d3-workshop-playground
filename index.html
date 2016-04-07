@@ -13,6 +13,8 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
+	
+	<link href="/css/bootstrap-slider.css" rel="stylesheet">
 
   <!-- Custom CSS -->
   <link href="/css/sb-admin.css" rel="stylesheet">
@@ -192,7 +194,14 @@
                 <h4 class="chart-title">
                   Percent Complete
                 </h4>
-								<div class="vis spinner">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="vis spinner">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<input id="percent" type="text"/>
+										</div>
 								</div>
               </div>
             </div>
@@ -215,6 +224,9 @@
 
   <!-- Bootstrap Core JavaScript -->
   <script src="/js/bootstrap.collapse.min.js"></script>
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/js/bootstrap-slider.js"></script>
 
   <!-- vis -->
   <script src="/js/d3.tip.js"></script>
@@ -224,6 +236,7 @@
   <script src="/modules/geomapping/geomap.js"></script>
   <script src="/modules/product/products.complete.js"></script>
 	<script src="/modules/percent/percent.js"></script>
+	<script src="/modules/percent/percent_slider.js"></script>
 
 </body>
 

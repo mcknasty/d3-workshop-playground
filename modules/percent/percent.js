@@ -1,22 +1,17 @@
-(function() {
+$('#percent').keyup( function (event) {
+	console.log(event.keyCode);
+  if(event.keyCode == 13){
+      $("#updatePercent").click();
+  }
+});
+var progressSpinner = (function() {
   'use strict';
-	
+	var transitionTime = 750;
   function progressSpinner() {
 		var elem = $('.spinner').eq(0);
-    var controller = function ($scope) {
-        $scope.log = function (variable) {
-            console.log(variable);
-        };
-        $scope.$watch('percent', function (newVal) {
-            _this.transition($scope.percent);
-        });
-    };
     var link = function (height, width, percent) {
-			
-			var tempPercent = 0,
-      _this = this,
-			interval;
 			elem.css({ height, width });
+			this.percent = percent;
 			this.pi = Math.PI;
 			this.height = height;
 			this.width = percent;
@@ -24,24 +19,17 @@
       this.setRadius();
       this.addText();
 			this.drawCircles(0);
-			this.transition(percent);
-			var time = 750 / percent * 0.01;
-			console.log(time);
-			interval = window.setInterval(function(){
-				if(tempPercent < percent) {
-					_this.setText(tempPercent)
-					tempPercent += 0.01;
+			this.transition(this.percent);
+			this.transitionText(this.percent);
+			$('#percent').keyup(function (event) {
+				if(event.keycode == 13) {
+					$('#updatePercent').click();
 				}
-				else {
-					_this.setText(percent)
-					window.clearInterval(interval);
-				}
-			}, time)
+			})
     };
 		
 		return $.extend(this, {
 			link: link,
-			controller: controller,
 			elem: elem
 		});
   }
@@ -93,7 +81,7 @@
       var newAngle = percent * 2 * this.pi;
       this.status.text(this.formatPercentString(percent));
       this.foreground.transition()
-          .duration(750)
+          .duration(transitionTime)
           .attrTween("d", function (d) {
           var interpolate = d3.interpolate(d.endAngle, newAngle);
           return function (t) {
@@ -103,10 +91,44 @@
       });
   };
   progressSpinner.prototype.formatPercentString = function (percent) {
-      return (percent.toFixed(2) * 100).toString().substring(0, 2) + '%';
+		var length = (percent == 1)? 3 : 2;
+    return (percent.toFixed(2) * 100).toString().substring(0, length) + '%';
   };
 	
+	progressSpinner.prototype.transitionText = function (percent) {
+		var time = transitionTime / percent * 0.01,
+		tempPercent = 0,
+		_this = this,
+		interval;
+		interval = window.setInterval(function(){
+			if(tempPercent < percent) {
+				_this.setText(tempPercent)
+				tempPercent += 0.01;
+			}
+			else {
+				_this.setText(percent)
+				window.clearInterval(interval);
+			}
+		}, time)
+	}
+	
+	progressSpinner.prototype.update = function () {
+		var percent = this.percent * 0.01;
+		console.log(percent)
+		this.transition(percent);
+		this.transitionText(percent);
+	};
+	
+	progressSpinner.prototype.setPercent = function (val) {
+		$('#percent').val(val);
+		this.percent = val;
+		this.update();
+	}
+	
+	progressSpinner.prototype.getPercent = function () {
+		return this.percent;
+	}
 	var p = new progressSpinner();
-	p.link('847', '350', 0.4);
-
+	p.link('400', '350', 0.95);
+	return p;
 }());
