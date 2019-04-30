@@ -88,13 +88,23 @@
 				.duration(2000)
 				.attrTween('d', arcTween)
 				.each('end', function(d) {
-					var translate = arc.centroid(d);
+					var textTranslate = arc.centroid(d),
+					centerOfArc = arc.centroid(d);
+					(textTranslate[0] > 0) ? textTranslate[0] += 100 : textTranslate[0] -= 100;
+					(textTranslate[1] > 0) ? textTranslate[1] += 50 : textTranslate[1] -= 50;
 					svg.append('text')
 						.attr('text-anchor', 'middle')
 						.text(function(){
 							return d.data.browser + '-' + d.data.value
 						})
-						.attr('transform', 'translate(' + translate + ')')
+						.attr('transform', 'translate(' + textTranslate + ')');
+						
+				svg.append("line")
+				    .style("stroke", "white")
+				    .attr("x1", centerOfArc[0])
+				    .attr("y1", centerOfArc[1])
+				    .attr("x2", textTranslate[0])
+				    .attr("y2", textTranslate[1]);  
 				})
 		
 		/**
